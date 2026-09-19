@@ -1,0 +1,46 @@
+{
+  "name": "seed-image-to-code",
+  "version": "1.0.0",
+  "description": "Seed-2.1-pro-0915 驱动的设计资产转前端代码 Skill（多模态 Coding + Agent 闭环）",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "seed2code": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "vitest run",
+    "test:unit": "vitest run tests/unit",
+    "test:dry": "vitest run tests/dry",
+    "test:live": "tsx scripts/test-live.ts",
+    "test:smoke": "tsx scripts/smoke-live.ts",
+    "benchmark:live": "tsx scripts/benchmark-live.ts",
+    "mcp": "node dist/mcp/mcpServer.js",
+    "cli": "tsx src/cli/index.ts"
+  },
+  "dependencies": {
+    "ag-psd": "^30.0.1",
+    "esbuild": "^0.28.2",
+    "openai": "^4.77.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0",
+    "puppeteer-core": "^23.11.1",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
