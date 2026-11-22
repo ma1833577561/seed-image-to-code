@@ -1,12 +1,12 @@
 {
   "name": "seed-image-to-code",
   "version": "1.0.0",
-  "description": "Seed-2.1-pro-0915 驱动的设计资产转前端代码 Skill（多模态 Coding + Agent 闭环）",
+  "description": "设计图 / PSD / Figma / 站点 URL → 多文件前端代码：主题色提取、代码生成、渲染比对、双维还原度评分、自动迭代修正。既能当 CLI 用，也能当 MCP Server 接进 Claude Code / Cursor / TRAE。",
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "seed2code": "./dist/cli/index.js"
+    "seed2code": "dist/cli/index.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
@@ -17,7 +17,8 @@
     "test:smoke": "tsx scripts/smoke-live.ts",
     "benchmark:live": "tsx scripts/benchmark-live.ts",
     "mcp": "node dist/mcp/mcpServer.js",
-    "cli": "tsx src/cli/index.ts"
+    "cli": "tsx src/cli/index.ts",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "ag-psd": "^30.0.1",
@@ -26,8 +27,6 @@
     "pixelmatch": "^5.3.0",
     "pngjs": "^7.0.0",
     "puppeteer-core": "^23.11.1",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
@@ -41,6 +40,40 @@
     "vitest": "^2.1.8"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=18.17"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.map",
+    "SKILL.md"
+  ],
+  "keywords": [
+    "design-to-code",
+    "image-to-code",
+    "figma",
+    "psd",
+    "vlm",
+    "code-generation",
+    "agent",
+    "mcp",
+    "cli",
+    "frontend"
+  ],
+  "author": {
+    "name": "马金栋",
+    "email": "1833577561@qq.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ma1833577561/seed-image-to-code.git"
+  },
+  "homepage": "https://github.com/ma1833577561/seed-image-to-code#readme",
+  "bugs": {
+    "url": "https://github.com/ma1833577561/seed-image-to-code/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }

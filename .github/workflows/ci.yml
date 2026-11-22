@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - run: npm ci
+
+      # 先证明它真的能编译成可发布的产物（dist 不进版本库，靠这一步生成）
+      - run: npm run build
+
+      - name: bin 入口带 shebang 且可执行
+        run: |
+          head -1 dist/cli/index.js | grep -qx '#!/usr/bin/env node'
+          node dist/cli/index.js help | head -3
+
+      # 只跑 unit：tests/dry 需要真实 Chromium 做渲染，交给本机或专门的 job
+      - run: npx vitest run tests/unit
+
+      - name: 打出来的包里有 dist、没有 src
+        run: |
+          npm pack --json > /tmp/pack.json
+          node -e "
+            const d = require('/tmp/pack.json')[0];
+            const files = d.files.map(f => f.path);
+            const hasDist = files.some(f => f.startsWith('dist/cli/'));
+            const hasSrc = files.some(f => f.startsWith('src/'));
+            if (!hasDist) { console.error('包里没有 dist，main/bin 会指向不存在的文件'); process.exit(1); }
+            if (hasSrc) { console.error('包里混进了 src'); process.exit(1); }
+            console.log('tarball ok:', d.filename, files.length, 'files');
+          "

@@ -10,7 +10,7 @@ import path from "node:path";
 import { build } from "esbuild";
 import puppeteer, { type Browser } from "puppeteer-core";
 import type { CodeFile, Viewport } from "../types.js";
-import { getConfig } from "../config.js";
+import { resolveChromiumPath } from "../config.js";
 import { DEFAULT_VIEWPORT } from "../constants.js";
 
 let browser: Browser | null = null;
@@ -18,7 +18,7 @@ let browser: Browser | null = null;
 async function getBrowser(): Promise<Browser> {
   if (browser) return browser;
   browser = await puppeteer.launch({
-    executablePath: getConfig().chromiumPath,
+    executablePath: resolveChromiumPath(),
     headless: true,
     args: ["--no-sandbox", "--disable-gpu", "--disable-dev-shm-usage"],
   });

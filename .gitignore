@@ -5,4 +5,4 @@ output/
 *.png
 *.log
 .DS_Store
-blog/
+blog/*.tgz

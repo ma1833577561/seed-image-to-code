@@ -5,16 +5,15 @@
 
 import puppeteer, { type Browser } from "puppeteer-core";
 import type { ParsedAsset, AssetInput, Viewport } from "../types.js";
-import { getConfig } from "../config.js";
+import { resolveChromiumPath } from "../config.js";
 import { DEFAULT_VIEWPORT } from "../constants.js";
 
 let cachedBrowser: Browser | null = null;
 
 export async function getBrowser(): Promise<Browser> {
   if (cachedBrowser) return cachedBrowser;
-  const cfg = getConfig();
   cachedBrowser = await puppeteer.launch({
-    executablePath: cfg.chromiumPath,
+    executablePath: resolveChromiumPath(),
     headless: true,
     args: [
       "--no-sandbox",

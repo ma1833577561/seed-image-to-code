@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /**
  * CLI 入口：seed2code
  * 用法：
