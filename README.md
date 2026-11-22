@@ -1,5 +1,7 @@
 # seed-image-to-code
 
+[![npm](https://img.shields.io/npm/v/seed-image-to-code)](https://www.npmjs.com/package/seed-image-to-code)
+[![license](https://img.shields.io/npm/l/seed-image-to-code)](LICENSE)
 ![ci](https://github.com/ma1833577561/seed-image-to-code/actions/workflows/ci.yml/badge.svg)
 
 基于 **Seed-2.1-pro-0915**（火山方舟 `doubao-seed-evolving`）多模态 Coding / VLM 能力构建的「设计资产转前端代码」Skill：输入设计图 / PSD / Figma / 站点 URL，自动完成 **主题色提取 → 多文件代码生成 → 渲染 → 双维还原度评分 → 迭代修正 → 质量报告** 的完整闭环。
@@ -11,6 +13,8 @@ npx seed-image-to-code help            # 不装直接用
 npm i -g seed-image-to-code            # 或装到全局
 seed2code generate ./design.png --tech vue3 --fidelity 90 -o ./output
 ```
+
+想跟 main 最新代码走（不走 npm 包）：`npm i -g github:ma1833577561/seed-image-to-code`。
 
 两个前置条件：
 

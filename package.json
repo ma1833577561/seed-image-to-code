@@ -1,6 +1,6 @@
 {
   "name": "seed-image-to-code",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "设计图 / PSD / Figma / 站点 URL → 多文件前端代码：主题色提取、代码生成、渲染比对、双维还原度评分、自动迭代修正。既能当 CLI 用，也能当 MCP Server 接进 Claude Code / Cursor / TRAE。",
   "type": "module",
   "main": "dist/index.js",
