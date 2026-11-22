@@ -18,7 +18,8 @@
     "benchmark:live": "tsx scripts/benchmark-live.ts",
     "mcp": "node dist/mcp/mcpServer.js",
     "cli": "tsx src/cli/index.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "ag-psd": "^30.0.1",
